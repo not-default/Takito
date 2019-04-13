@@ -119,6 +119,14 @@ client.on('guildMemberUpdate',(oMember, nMember) => {
     oMember.guild.channels.find(x => x.name === 'action-log').send(nickembed);
   });
 
+// Console Chat //
+let y = process.openStdin()
+y.addListener('data', res => {
+    let x = res.toString().trim().split(/ +/g)
+    client.channels.get('397928222555242501').send(x.join(' '));
+});
+
+
 // Perms Stuff
 
 client.on('message', async message => {
