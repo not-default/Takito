@@ -10,5 +10,6 @@ module.exports.run = async (client, message, args) => {
 };
 
 module.exports.help = {
-    name: 'ping'
+    name: 'ping',
+    aliases: ['p']
 };
