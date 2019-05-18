@@ -4,7 +4,7 @@ module.exports.run = async (client, message, args) => {
     
     // >8ball question
 
-    if(!args[2]) return message.reply("please ask a full question!");
+    if(!args[2]) return message.channel.send(`**${message.author.username}**, please ask a full question!`);
     
     let replies = [
     "It Is Certain",
@@ -25,5 +25,6 @@ module.exports.run = async (client, message, args) => {
 };
 
 module.exports.help = {
-    name: '8ball'
+    name: '8ball',
+    aliases: ['8b']
 };
