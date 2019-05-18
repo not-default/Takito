@@ -7,6 +7,7 @@ const fs = require('fs'); // require files
 
 const client = new Discord.Client({disableEveryone: true});
 client.commands = new Discord.Collection();
+client.aliases = new Discord.Collection();
 
 // Command Handler Setup
 fs.readdir('./commands', (err, files) => {
@@ -15,16 +16,18 @@ fs.readdir('./commands', (err, files) => {
 
     let jsfile = files.filter(f => f.split('.').pop() === 'js');
     if (jsfile.length <= 0){
-        console.log('couldn\'t find commands.');
-        return;
+        return console.log(' [ LOG ] couldn\'t find commands!');
     }
 
     jsfile.forEach((f, i) => {
         let props = require(`./commands/${f}`);
         console.log(`[ LOG ] ${f} loaded!`);
         client.commands.set(props.help.name, props);
+        // Aliases
+        props.help.aliases.forEach(alias => {
+            client.aliases.set(alias, props.help.name)
+        });
     });
-
 });
 
 //////////////////////////
@@ -41,9 +44,7 @@ function setActivity() {
     var info = Gameinfo[Math.floor(Math.random() * Gameinfo.length)]; //Random Math to set the setGame to something in the GameInfo array
 
     client.user.setActivity(info) // "playing Game" '...' Sets the setGame to what the info Random math picked from the GameInfo Array
-    if (config.debugMode === '1') {
-        console.log(`[ LOG ] set Activity set to ( ${info} )`) //Logs to console what the setGame was set as.
-    };
+
 };
 
 setInterval(setActivity, 1000 * 60 * 10) //sets and picks a new game every 10 minutes
@@ -119,6 +120,8 @@ client.on('guildMemberUpdate',(oMember, nMember) => {
     oMember.guild.channels.find(x => x.name === 'action-log').send(nickembed);
   });
 
+////////////////////////////////////
+
 // Perms Stuff
 
 client.on('message', async message => {
@@ -133,9 +136,9 @@ client.on('message', async message => {
     let command = messageArray[0];
     let args = messageArray.slice(1);
 
-    let commandfile = client.commands.get(command.slice(prefix.length));
+    let commandfile = client.commands.get(command.slice(prefix.length)) || client.commands.get(client.aliases.get(command.slice(prefix.length)));
     if (commandfile) commandfile.run(client,message,args);
 
 });
-    
+
 client.login(process.env.BOT_TOKEN);
