@@ -1,11 +1,9 @@
 const Discord = require('discord.js');
-const ms = require('ms');
 
 module.exports.run = async (client, message, args) => {
 
     // >avatar @user
 
-    if(!message.mentions.users.first()) return message.reply("Please specify a user.");
     let user = message.mentions.users.first() || message.author;
 
     message.delete();
@@ -15,6 +13,10 @@ module.exports.run = async (client, message, args) => {
     .setImage(user.displayAvatarURL)
     .setColor('RANDOM');
 
+    if(!message.mentions.users.first()) return message.channel.send(avatarEmbed).then(function (message) {
+        message.react('📷');
+    });
+
     message.channel.send(avatarEmbed).then(function (message) {
         message.react('📷');
     });
@@ -22,5 +24,6 @@ module.exports.run = async (client, message, args) => {
 };
 
 module.exports.help = {
-    name: 'avatar'
+    name: 'avatar',
+    aliases: ['pfp']
 };
