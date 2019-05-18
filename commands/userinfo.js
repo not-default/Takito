@@ -5,13 +5,9 @@ module.exports.run = async (client, message, args) => {
 
     // >userinfo @user
     
-    if(!message.mentions.users.first()) return message.reply("Please specify a user.");
     let user = message.mentions.users.first() || message.author;
-
     const member = message.guild.member(user);
-
     let uIcon = user.displayAvatarURL;
-
     let userEmbed = new Discord.RichEmbed()
 
     .setColor('RANDOM')
@@ -24,6 +20,10 @@ module.exports.run = async (client, message, args) => {
 
     .setFooter(`Requested by ${message.author.username}#${message.author.discriminator}`);
 
+    if(!message.mentions.users.first()) return message.channel.send(userEmbed).then(function (message) {
+        message.react('📖');
+    });
+
     return message.channel.send(userEmbed).then(function (message) {
         message.react('📖');
     });
@@ -31,5 +31,6 @@ module.exports.run = async (client, message, args) => {
 };
 
 module.exports.help = {
-    name: 'userinfo'
+    name: 'userinfo',
+    aliases: ['ui']
 };
