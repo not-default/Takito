@@ -12,7 +12,7 @@ module.exports.run = async (client, message, args) => {
     .setTitle('Bot Information')
     .setColor("#9788BF")
     .setThumbnail(bIcon)
-    .setDescription(`Bot name **${client.user.username}**`)
+    .setDescription(`Bot name: **${client.user.username}**\nBot Prefix: **${config.prefix}**`)
     .addField("Joined on", `${moment.utc(client.joinedAt).format("MMMM Do YYYY")}`, true).addField("Created On", `${moment.utc(client.user.createdAt).format("MMMM Do YYYY")}`, true)
 
     .setFooter(`Requested by ${message.author.username}#${message.author.discriminator} | Created by Default | Profile picture: Cricut`);
@@ -22,5 +22,6 @@ module.exports.run = async (client, message, args) => {
 };
 
 module.exports.help = {
-    name: "botinfo"
+    name: "botinfo",
+    aliases: ['bi']
 };
