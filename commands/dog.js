@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const superagent = require('superagent');
+const ms = require('ms');
 const talkedRecently = new Set();
 
 module.exports.run = async (client, message, args) => {
@@ -7,7 +8,7 @@ module.exports.run = async (client, message, args) => {
     // >dog
 
     if (talkedRecently.has(message.author.id)) {
-        message.channel.send(`${message.author} Wait one minute before using this command again!`);
+        message.channel.send(`${message.author.username}, Wait one minute before using this command again!`);
     } else {
 
         let{body} = await superagent
@@ -25,9 +26,10 @@ module.exports.run = async (client, message, args) => {
         talkedRecently.add(message.author.id);
         setTimeout(() => {
             talkedRecently.delete(message.author.id);
-        }, 60000);
+        }, ms('1m'));
     };
 
 module.exports.help = {
-    name: 'dog'
+    name: 'dog',
+    aliases: ['doggo', 'pup', 'pupper', 'pooch']
 };
