@@ -1,8 +1,6 @@
 /// Required Libraries ///
 const config = require('./config.json'); // requires prefix and bot token
 const Discord = require('discord.js'); // requires discord.js
-const ddiff = require('return-deep-diff'); // requires ddiff
-const moment = require('moment');
 const fs = require('fs'); // require files
 
 const client = new Discord.Client({disableEveryone: true});
