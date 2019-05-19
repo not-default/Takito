@@ -7,99 +7,104 @@ module.exports.run = async (client, message, args) => {
     // more Help.
 
     if(args[0] === '8ball'){
-        message.reply('**Usage:** \`>8ball <question>\`');
+        message.channel.send('**Usage:** \`>8ball <question>\`');
         return;
     };
 
     if(args[0] === 'avatar'){
-        message.reply('**Usage:** \`>avatar <user>\`');
+        message.channel.send('**Usage:** \`>avatar <user>\`');
         return;
     };
 
     if(args[0] === 'botinfo'){
-        message.reply('**Usage:** \`>botinfo\`');
+        message.channel.send('**Usage:** \`>botinfo\`');
         return;
     };
 
     if(args[0] === 'cat'){
-        message.reply('**Usage:** \`>cat\`');
+        message.channel.send('**Usage:** \`>cat\`');
         return;
     };
 
     if(args[0] === 'choose'){
-        message.reply('**Usage:** \`>choose <Item 1> | <Item 2>\`');
+        message.channel.send('**Usage:** \`>choose <Item 1> | <Item 2>\`');
         return;
     };
 
     if(args[0] === 'close'){
-        message.reply('**Usage:** \`>close\`');
+        message.channel.send('**Usage:** \`>close\`');
         return;
     };
 
     if(args[0] === 'dog'){
-        message.reply('**Usage:** \`>dog\`');
+        message.channel.send('**Usage:** \`>dog\`');
         return;
     };
 
     if(args[0] === 'help'){
-        message.reply('**Usage:** \`>help <page number>\`');
+        message.channel.send('**Usage:** \`>help <page number>\`');
         return;
     };
 
     if(args[0] === 'mute'){
-        message.reply('**Usage:** \`>mute <user>\`');
+        message.channel.send('**Usage:** \`>mute <user>\`');
         return;
     };
 
     if(args[0] === 'muted'){
-        message.reply('**Usage:** \`>muted\`');
+        message.channel.send('**Usage:** \`>muted\`');
         return;
     };
 
     if(args[0] === 'open'){
-        message.reply('**Usage:** \`>open\`');
+        message.channel.send('**Usage:** \`>open\`');
         return;
     };
 
     if(args[0] === 'ping'){
-        message.reply('**Usage:** \`>ping\`');
+        message.channel.send('**Usage:** \`>ping\`');
         return;
     };
 
     if(args[0] === 'say'){
-        message.reply('**Usage:** \`>say <statment>\`');
+        message.channel.send('**Usage:** \`>say <statment>\`');
         return;
     };
 
     if(args[0] === 'serverinfo'){
-        message.reply('**Usage:** \`>serverinfo\`');
+        message.channel.send('**Usage:** \`>serverinfo\`');
         return;
     };
 
     if(args[0] === 'setnick'){
-        message.reply('**Usage:** \`>setnick <user> <name>\`');
+        message.channel.send('**Usage:** \`>setnick <user> <name>\`');
         return;
     };
 
     if(args[0] === 'suggest'){
-        message.reply('**Usage:** \`>suggest <suggestion>\`');
+        message.channel.send('**Usage:** \`>suggest <suggestion>\`');
         return;
     };
 
     if(args[0] === 'unmute'){
-        message.reply('**Usage:** \`>unmute <user>\`');
+        message.channel.send('**Usage:** \`>unmute <user>\`');
+        return;
+    };
+
+    if(args[0] === 'uptime'){
+        message.channel.send('**Usage:** \`>uptime\`');
         return;
     };
 
     if(args[0] === 'userinfo'){
-        message.reply('**Usage:** \`>userinfo <user>\`');
+        message.channel.send('**Usage:** \`>userinfo <user>\`');
         return;
     };
 
     // Pages //
 
     if(args[0] === '1'){
-        message.channel.send(`**${message.author.username}**, Page 1 of help has been sent, check your DM's!`);
+        message.react('💬')
 
         // Page 1
         let page1HelpEmbed = new Discord.RichEmbed()
@@ -116,7 +121,7 @@ module.exports.run = async (client, message, args) => {
     };
 
     if(args[0] === '2'){
-        message.channel.send(`**${message.author.username}**, Page 2 of help has been sent, check your DM's!`);
+        message.react('💬')
 
         // page 2
         let page2HelpEmbed = new Discord.RichEmbed()
@@ -133,7 +138,7 @@ module.exports.run = async (client, message, args) => {
     };
 
     if(args[0] === '3'){
-        message.channel.send(`**${message.author.username}**, Page 3 of help has been sent, check your DM's!`);
+        message.react('💬')
 
         // page 2
         let page3HelpEmbed = new Discord.RichEmbed()
@@ -151,7 +156,7 @@ module.exports.run = async (client, message, args) => {
     };
 
     if(args[0] === '4'){
-        message.channel.send(`**${message.author.username}**, Page 4 of help has been sent, check your DM's!`);
+        message.react('💬')
 
         // page 2
         let page4HelpEmbed = new Discord.RichEmbed()
@@ -164,7 +169,7 @@ module.exports.run = async (client, message, args) => {
     };
     
     if(args[0] === '5'){
-        message.channel.send(`**${message.author.username}**, Page 5 of help has been sent, check your DM's!`);
+        message.react('💬')
 
         // page 2
         let page5HelpEmbed = new Discord.RichEmbed()
@@ -177,7 +182,7 @@ module.exports.run = async (client, message, args) => {
         return;
     };
 
-    message.channel.send(`**${message.author.username}**, Check your DM's!`);
+    message.react('💬')
     let helpEmbed = new Discord.RichEmbed()
     .setColor('#9788BF')
     .addField('Help Menu', 'To see a certain page, just add the page number after the `>help` command.\nLike this: `>help 2`')
